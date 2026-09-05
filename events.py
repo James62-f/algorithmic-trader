@@ -10,17 +10,17 @@ class EventBus:
     def __init__(self) -> None:
         mt5.initialize()
 
-        self._subscribers: Dict[Type[Any], List[Callable[[Any], Any]]] = {}
+        self.subscribers: Dict[Type[Any], List[Callable[[Any], Any]]] = {}
 
     def subscribe(self, event_type: Type[T], handler: Callable[[T], Any]) -> None:
-        if event_type not in self._subscribers:
-            self._subscribers[event_type] = []
+        if event_type not in self.subscribers:
+            self.subscribers[event_type] = []
 
-        self._subscribers[event_type].append(handler)
+        self.subscribers[event_type].append(handler)
 
     def publish(self, event: Any) -> None:
         event_type = type(event)
-        handlers = self._subscribers.get(event_type, [])
+        handlers = self.subscribers.get(event_type, [])
 
         for handler in handlers:
             handler(event)
@@ -47,8 +47,7 @@ def EventHandler(event_type: Type[T]) -> Callable[[Callable[[T], Any]], Callable
 
 @dataclass(frozen=True)
 class TickEvent:
-    # We can hard code the symbol here since the timezone data for US stocks are all equal
-    server_time: datetime = datetime.fromtimestamp(mt5.symbol_info_tick("NAS100_SB").time, tz=timezone.utc)
+    server_time: datetime
 
 
 

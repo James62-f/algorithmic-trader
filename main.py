@@ -12,11 +12,5 @@ if __name__ == "__main__":
         timer.sleep(0.5)
 
         # Tick Event
-        tick_event = TickEvent()
+        tick_event = TickEvent(server_time=datetime.fromtimestamp(mt5.symbol_info_tick("NAS100_SB").time, tz=timezone.utc))
         EVENT_BUS.publish(tick_event)
-
-
-
-
-
-

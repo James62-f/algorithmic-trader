@@ -8,10 +8,12 @@ class Stock:
         EVENT_BUS.register(self)
 
         self.symbol = symbol
+        self.tp = tp
         self.sl = sl
         self.volume = volume
         self.logs = []
         self.discord_queue = discord_queue
+        self.running = False
 
     def append_log(self, text: str):
         msg = f"{[self.symbol]} {text} "
@@ -20,6 +22,12 @@ class Stock:
 
         if self.discord_queue is not None:
             self.discord_queue.put(msg)
+
+    def set_running(self, value: bool):
+        self.running = value
+
+        msg = f"{"🟢" if self.running else "🔴"} Bot run state set to: {"enabled" if self.running else "disabled"}"
+        self.append_log(msg)
 
     def get_filling_mode(self) -> Any:
         info = mt5.symbol_info(self.symbol)
