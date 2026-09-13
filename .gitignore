@@ -2,3 +2,4 @@
 __pycache__/nasdaq.cpython-314.pyc
 __pycache__/stock.cpython-314.pyc
 __pycache__/events.cpython-314.pyc
+.env

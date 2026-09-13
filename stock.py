@@ -16,7 +16,7 @@ class Stock:
         self.running = False
 
     def append_log(self, text: str):
-        msg = f"{[self.symbol]} {text} "
+        msg = f"{[self.symbol]} {text}"
         self.logs.append(msg)
         print(msg)
 
@@ -26,7 +26,7 @@ class Stock:
     def set_running(self, value: bool):
         self.running = value
 
-        msg = f"{"🟢" if self.running else "🔴"} Bot run state set to: {"enabled" if self.running else "disabled"}"
+        msg = f"{':green_circle:' if self.running else ':red_circle:'} Bot run state set to: {'enabled' if self.running else 'disabled'}"
         self.append_log(msg)
 
     def get_filling_mode(self) -> Any:
@@ -130,4 +130,7 @@ class Stock:
         else:
             self.append_log(f"Failed to modify SL: {result.comment}")
         return result
+        
+    def reset(self):
+        self.append_log("Reset trading status.")
 
