@@ -25,7 +25,11 @@ Install dependencies
 pip install
 ```
 
-#### THEN RUN main.py
+### IMPORTANT: ADD .env file to project containing:
+    BOT_TOKEN=(PASTE YOUR DISCORD BOT TOKEN HERE)
+    CHANNEL_ID=(PASTE YOUR DISCORD SERVER CHANNEL ID HERE)
+
+#### IMPORTANT: THEN RUN main.py
 
 
 ## Credit
