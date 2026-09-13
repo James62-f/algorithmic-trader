@@ -26,6 +26,9 @@ class Nasdaq(Stock):
     @EventHandler(TickEvent)
     def on_tick(self, event: TickEvent):
         server_time = event.server_time
+        
+        if server_time.weekday > 4:
+            return
 
         self.monitor_positions()
 
