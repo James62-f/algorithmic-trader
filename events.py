@@ -48,10 +48,4 @@ def EventHandler(event_type: Type[T]) -> Callable[[Callable[[T], Any]], Callable
 @dataclass(frozen=True)
 class TickEvent:
     server_time: datetime
-
-
-
-
-
-
     
